@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  headless-browser:
+    build: .
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    volumes:
+      # For development: mount source code for quick changes
+      # - ./src:/app/src
+      # For data persistence if needed
+      - browser-data:/app/data
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+
+volumes:
+  browser-data:
